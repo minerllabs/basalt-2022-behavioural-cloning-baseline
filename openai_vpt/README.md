@@ -1,0 +1,1 @@
+This is a copy of OpenAI's VPT, modified to support backpropagation.
