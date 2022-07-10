@@ -18,7 +18,7 @@ See [the AICrowd competition page](https://www.aicrowd.com/challenges/neurips-20
 
 Install [MineRL v1.0.0](https://github.com/minerllabs/minerl) (or newer) and the requirements for [OpenAI VPT](https://github.com/openai/Video-Pre-Training).
 
-Download the dummy BASALT dataset from [here](https://microsofteur-my.sharepoint.com/:f:/g/personal/t-anssik_microsoft_com/Ej9R17fChVVLtPZQmnA233ABmhtzPBnS-v0BOv6na8_IZA?e=izua7z) (password: `findcave2022`). Also download the 1x .weights and .model files for OpenAI VPT [here](https://github.com/openai/Video-Pre-Training).
+Download the dummy BASALT dataset from [here](https://microsofteur-my.sharepoint.com/:f:/g/personal/t-anssik_microsoft_com/Ej9R17fChVVLtPZQmnA233ABmhtzPBnS-v0BOv6na8_IZA?e=izua7z) (password: `findcave2022`). Also download the 1x width foundational model [.weights](https://openaipublic.blob.core.windows.net/minecraft-rl/models/foundation-model-1x.weights) and [.model](https://openaipublic.blob.core.windows.net/minecraft-rl/models/foundation-model-1x.model) files for the OpenAI VPT model.
 
 Place these data files under `data` to match the following structure:
 
