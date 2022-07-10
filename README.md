@@ -5,7 +5,7 @@
 
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/BT9uegr)
 
-This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition **submission template** ("basalt" track)!
+This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition ("basalt" track)!
 
 There will be a separate baseline solution for the "intro" track of the competition.
 
