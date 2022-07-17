@@ -58,3 +58,6 @@ python run_agent.py --model data/VPT-models/foundation-model-1x.model --weights 
 
 Change `FindCave` to other tasks to run for different tasks.
 
+## How to Submit a Model on AICrowd.
+
+To submit this baseline agent follow the [submission instructions](https://github.com/minerllabs/basalt_2022_competition_submission_template/), but use this repo instead of the starter kit repo.
