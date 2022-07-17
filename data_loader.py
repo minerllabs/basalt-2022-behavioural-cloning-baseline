@@ -141,6 +141,7 @@ def composite_images_with_alpha(image1, image2, alpha, x, y):
     """
     ch = min(image1.shape[0] - y, image2.shape[0])
     cw = min(image1.shape[1] - x, image2.shape[1])
+    alpha = alpha[:ch, :cw]
     image1[y:y + ch, x:x + cw, :] = (image1[y:y + ch, x:x + cw, :] * (1 - alpha) + image2[:ch, :cw, :] * alpha).astype(np.uint8)
 
 
@@ -153,8 +154,6 @@ def data_loader_worker(tasks_queue, output_queue, quit_workers_event):
     cursor_image = cursor_image[:16, :16, :]
     cursor_alpha = cursor_image[:, :, 3:] / 255.0
     cursor_image = cursor_image[:, :, :3]
-
-    action_transformer = ActionTransformer(**ACTION_TRANSFORMER_KWARGS)
 
     while True:
         task = tasks_queue.get()
@@ -319,4 +318,3 @@ class DataLoader:
         for process in self.processes:
             process.terminate()
             process.join()
-
