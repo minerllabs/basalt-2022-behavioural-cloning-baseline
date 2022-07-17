@@ -139,8 +139,10 @@ def composite_images_with_alpha(image1, image2, alpha, x, y):
 
     Modifies image1 in-place
     """
-    ch = min(image1.shape[0] - y, image2.shape[0])
-    cw = min(image1.shape[1] - x, image2.shape[1])
+    ch = min(0, image1.shape[0] - y, image2.shape[0])
+    cw = min(0, image1.shape[1] - x, image2.shape[1])
+    if ch == 0 or cw == 0:
+        return
     alpha = alpha[:ch, :cw]
     image1[y:y + ch, x:x + cw, :] = (image1[y:y + ch, x:x + cw, :] * (1 - alpha) + image2[:ch, :cw, :] * alpha).astype(np.uint8)
 
