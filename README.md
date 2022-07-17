@@ -7,7 +7,7 @@
 
 This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition ("basalt" track)!
 
-There will be a separate baseline solution for the "intro" track of the competition.
+You can find the "intro" track baseline solution [here](https://github.com/minerllabs/basalt-2022-intro-track-baseline).
 
 MineRL BASALT is a competition on solving human-judged tasks. The tasks in this competition do not have a pre-defined reward function: the goal is to produce trajectories that are judged by real humans to be effective at solving a given task.
 
