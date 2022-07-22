@@ -47,10 +47,10 @@ python train.py
 
 ## Visualizing/enjoying/evaluating models
 
-To run the trained model for `MineRLBasaltFindCave-v0`, run the following (after loading up it should show a screen of the agent going around):
+To run the trained model for `MineRLBasaltFindCave-v0`, run the following:
 
 ```
-python run_agent.py --model data/VPT-models/foundation-model-1x.model --weights train/MineRLBasaltFindCave.weights --env MineRLBasaltFindCave-v0
+python run_agent.py --model data/VPT-models/foundation-model-1x.model --weights train/MineRLBasaltFindCave.weights --env MineRLBasaltFindCave-v0 --show
 ```
 
 Change `FindCave` to other tasks to run for different tasks.
