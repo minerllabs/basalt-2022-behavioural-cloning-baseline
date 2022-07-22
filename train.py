@@ -1,7 +1,7 @@
 # Train one model for each task
 from behavioural_cloning import behavioural_cloning_train
 
-if __name__ == "__main__":
+def main():
     print("===Training FindCave model===")
     behavioural_cloning_train(
         data_dir="data/MineRLBasaltFindCave-v0",
@@ -33,3 +33,8 @@ if __name__ == "__main__":
         in_weights="data/VPT-models/foundation-model-1x.weights",
         out_weights="train/MineRLBasaltBuildVillageHouse.weights"
     )
+
+
+
+if __name__ == "__main__":
+    main()

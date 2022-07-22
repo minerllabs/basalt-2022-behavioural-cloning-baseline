@@ -1,8 +1,5 @@
 # NeurIPS 2022: MineRL BASALT Behavioural Cloning Baseline
 
-## NOTE: this code will be updated with the final submission kit once submissions open.
-
-
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/BT9uegr)
 
 This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition ("basalt" track)!

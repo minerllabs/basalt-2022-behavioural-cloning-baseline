@@ -1,0 +1,9 @@
+{
+  "challenge_id": "neurips-2022-minerl-basalt-competition",
+  "authors": ["aicrowd-bot"],
+  "description": "Baseline submission for MineRL BASALT 2022 Challenge",
+  "licence": "MIT",
+  "gpu": true,
+  "debug": true,
+  "track": "basalt"
+}
