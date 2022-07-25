@@ -2,7 +2,7 @@
 
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/BT9uegr)
 
-This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition ("basalt" track)!
+This repository contains a behavioural cloning baseline solution for the MineRL BASALT 2022 Competition ("basalt" track)! This solution fine-tunes the "width-x1" models of OpenAI VPT for more sample-efficient training.
 
 You can find the "intro" track baseline solution [here](https://github.com/minerllabs/basalt-2022-intro-track-baseline).
 
