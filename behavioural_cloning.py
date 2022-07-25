@@ -98,7 +98,6 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
     dummy_first = th.from_numpy(np.array((False,))).to(DEVICE)
 
     loss_sum = 0
-    loss_items = 0
     for batch_i, (batch_images, batch_actions, batch_episode_id) in enumerate(data_loader):
         batch_loss = 0
         for image, action, episode_id in zip(batch_images, batch_actions, batch_episode_id):
@@ -114,7 +113,7 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
                 episode_hidden_states[episode_id] = policy.initial_state(1)
             agent_state = episode_hidden_states[episode_id]
 
-            pi_distribution, v_prediction, new_agent_state = policy.get_output_for_observation(
+            pi_distribution, _, new_agent_state = policy.get_output_for_observation(
                 agent_obs,
                 agent_state,
                 dummy_first
@@ -139,7 +138,6 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
             # taken action.
             # Remember to take mean over batch losses
             loss = (-log_prob + KL_LOSS_WEIGHT * kl_div) / BATCH_SIZE
-            loss_sum += loss.item()
             batch_loss += loss.item()
             loss.backward()
 
