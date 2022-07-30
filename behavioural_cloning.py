@@ -17,6 +17,11 @@ from openai_vpt.agent import PI_HEAD_KWARGS, MineRLAgent
 from data_loader import DataLoader
 from openai_vpt.lib.tree_util import tree_map
 
+# Originally this code was designed for a small dataset of ~20 demonstrations per task.
+# The settings might not be the best for the full BASALT dataset (thousands of demonstrations).
+# Use this flag to switch between the two settings
+USING_FULL_DATASET = True
+
 EPOCHS = 2
 # Needs to be <= number of videos
 BATCH_SIZE = 16
@@ -24,7 +29,7 @@ BATCH_SIZE = 16
 # variation in datasets (otherwise, you will
 # get a bunch of consecutive samples)
 # Decrease this (and batch_size) if you run out of memory
-N_WORKERS = 20
+N_WORKERS = 100 if USING_FULL_DATASET else 20
 DEVICE = "cuda"
 
 LOSS_REPORT_RATE = 100
@@ -35,7 +40,7 @@ LEARNING_RATE = 0.000181
 # WEIGHT_DECAY = 0.039428
 WEIGHT_DECAY = 0.0
 # KL loss to the original model was not used in OpenAI VPT
-KL_LOSS_WEIGHT = 1.0
+KL_LOSS_WEIGHT = 0.1 if USING_FULL_DATASET else 1.0
 MAX_GRAD_NORM = 5.0
 
 def load_model_parameters(path_to_model_file):
@@ -62,17 +67,20 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
     policy = agent.policy
     original_policy = original_agent.policy
 
-    # Freeze most params
-    for param in policy.parameters():
-        param.requires_grad = False
-    # Unfreeze final layers
-    trainable_parameters = []
-    for param in policy.net.lastlayer.parameters():
-        param.requires_grad = True
-        trainable_parameters.append(param)
-    for param in policy.pi_head.parameters():
-        param.requires_grad = True
-        trainable_parameters.append(param)
+    if USING_FULL_DATASET:
+        trainable_parameters = policy.parameters()
+    else:
+        # Freeze most params if using small dataset
+        for param in policy.parameters():
+            param.requires_grad = False
+        # Unfreeze final layers
+        trainable_parameters = []
+        for param in policy.net.lastlayer.parameters():
+            param.requires_grad = True
+            trainable_parameters.append(param)
+        for param in policy.pi_head.parameters():
+            param.requires_grad = True
+            trainable_parameters.append(param)
 
     # Parameters taken from the OpenAI VPT paper
     optimizer = th.optim.Adam(
