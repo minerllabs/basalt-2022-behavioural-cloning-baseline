@@ -222,6 +222,10 @@ def data_loader_worker(tasks_queue, output_queue, quit_workers_event):
             else:
                 print(f"Could not read frame from video {video_path}")
         video.release()
+        # Signal that this task is done
+        # Yes we are using "None"s to tell when worker is done
+        # and when individual work-items are done...
+        output_queue.put((trajectory_id, None, None), timeout=QUEUE_TIMEOUT)
         if quit_workers_event.is_set():
             break
     # Tell that we ended
