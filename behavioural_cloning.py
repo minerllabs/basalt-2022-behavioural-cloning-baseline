@@ -43,6 +43,9 @@ WEIGHT_DECAY = 0.0
 KL_LOSS_WEIGHT = 0.1 if USING_FULL_DATASET else 1.0
 MAX_GRAD_NORM = 5.0
 
+# Calibrated to roughly 12 hours of training
+MAX_BATCHES = 14000
+
 def load_model_parameters(path_to_model_file):
     agent_parameters = pickle.load(open(path_to_model_file, "rb"))
     policy_kwargs = agent_parameters["model"]["args"]["net"]["args"]
@@ -164,9 +167,11 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
             print(f"Time: {time_since_start:.2f}, Batches: {batch_i}, Avrg loss: {loss_sum / LOSS_REPORT_RATE:.4f}")
             loss_sum = 0
 
+        if batch_i > MAX_BATCHES:
+            break
+
     state_dict = policy.state_dict()
     th.save(state_dict, out_weights)
-
 
 if __name__ == "__main__":
     parser = ArgumentParser()
