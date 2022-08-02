@@ -21,6 +21,18 @@ We have included a download utility (`utils/download_dataset.py`) to help you do
 python download_dataset.py --json-file find-cave-Jul-28.json --output-dir MineRLBasaltFindCave-v0 --num-demos 100
 ```
 
+Basic dataset statistics (note: one trajectory/demonstration may be split up into multiple videos):
+```
+Size  #Videos  Name
+--------------------------------------------------
+146G  1399     MineRLBasaltBuildVillageHouse-v0
+165G  2833     MineRLBasaltCreateVillageAnimalPen-v0
+165G  5466     MineRLBasaltFindCave-v0
+175G  4230     MineRLBasaltMakeWaterfall-v0
+```
+
+
+
 ## Setting up
 
 Install [MineRL v1.0.0](https://github.com/minerllabs/minerl) (or newer) and the requirements for [OpenAI VPT](https://github.com/openai/Video-Pre-Training).
