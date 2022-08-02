@@ -11,9 +11,9 @@ MineRL BASALT is a competition on solving human-judged tasks. The tasks in this 
 See [the AICrowd competition page](https://www.aicrowd.com/challenges/neurips-2022-minerl-basalt-competition) for further details on the competition.
 
 
-## Downloading BASALT dataset
+## Downloading the BASALT dataset
 
-You can find the index files containing all download URLs for the full BASALT dataset in the [OpenAI VPT repository at the bottom](https://github.com/openai/Video-Pre-Training#basalt-2022-dataset).
+You can find the index files containing all the download URLs for the full BASALT dataset in the [OpenAI VPT repository at the bottom](https://github.com/openai/Video-Pre-Training#basalt-2022-dataset).
 
 We have included a download utility (`utils/download_dataset.py`) to help you download the dataset. You can use it with the index files from the OpenAI VPT repository. For example, if you download the FindCave dataset index file, named `find-cave-Jul-28.json`, you can download first 100 demonstrations to `MineRLBasaltFindCave-v0` directory with:
 
