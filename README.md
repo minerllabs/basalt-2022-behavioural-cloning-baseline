@@ -18,7 +18,7 @@ You can find the index files containing all download URLs for the full BASALT da
 We have included a download utility (`utils/download_dataset.py`) to help you download the dataset. You can use it with the index files from the OpenAI VPT repository. For example, if you download the FindCave dataset index file, named `find-cave-Jul-28.json`, you can download first 100 demonstrations to `MineRLBasaltFindCave-v0` directory with:
 
 ```
-python .\download_dataset.py --json-file find-cave-Jul-28.json --output-dir MineRLBasaltFindCave-v0 --num-demos 100
+python download_dataset.py --json-file find-cave-Jul-28.json --output-dir MineRLBasaltFindCave-v0 --num-demos 100
 ```
 
 ## Setting up
