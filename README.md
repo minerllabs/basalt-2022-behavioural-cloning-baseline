@@ -54,8 +54,8 @@ Place these data files under `data` to match the following structure:
 │   ├── MineRLBasaltMakeWaterfall-v0
 │   │   └── ... files as above
 │   └── VPT-models
-│       ├── 2x.model
-│       └── foundation-model-2x.weights
+│       ├── foundation-model-1x.model
+│       └── foundation-model-1x.weights
 ```
 
 
