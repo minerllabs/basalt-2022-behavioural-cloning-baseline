@@ -40,11 +40,10 @@ LEARNING_RATE = 0.000181
 # WEIGHT_DECAY = 0.039428
 WEIGHT_DECAY = 0.0
 # KL loss to the original model was not used in OpenAI VPT
-KL_LOSS_WEIGHT = 0.1 if USING_FULL_DATASET else 1.0
+KL_LOSS_WEIGHT = 1.0
 MAX_GRAD_NORM = 5.0
 
-# Calibrated to roughly 12 hours of training
-MAX_BATCHES = 14000
+MAX_BATCHES = 2000 if USING_FULL_DATASET else int(1e9)
 
 def load_model_parameters(path_to_model_file):
     agent_parameters = pickle.load(open(path_to_model_file, "rb"))
@@ -70,20 +69,17 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
     policy = agent.policy
     original_policy = original_agent.policy
 
-    if USING_FULL_DATASET:
-        trainable_parameters = policy.parameters()
-    else:
-        # Freeze most params if using small dataset
-        for param in policy.parameters():
-            param.requires_grad = False
-        # Unfreeze final layers
-        trainable_parameters = []
-        for param in policy.net.lastlayer.parameters():
-            param.requires_grad = True
-            trainable_parameters.append(param)
-        for param in policy.pi_head.parameters():
-            param.requires_grad = True
-            trainable_parameters.append(param)
+    # Freeze most params if using small dataset
+    for param in policy.parameters():
+        param.requires_grad = False
+    # Unfreeze final layers
+    trainable_parameters = []
+    for param in policy.net.lastlayer.parameters():
+        param.requires_grad = True
+        trainable_parameters.append(param)
+    for param in policy.pi_head.parameters():
+        param.requires_grad = True
+        trainable_parameters.append(param)
 
     # Parameters taken from the OpenAI VPT paper
     optimizer = th.optim.Adam(
@@ -96,7 +92,7 @@ def behavioural_cloning_train(data_dir, in_model, in_weights, out_weights):
         dataset_dir=data_dir,
         n_workers=N_WORKERS,
         batch_size=BATCH_SIZE,
-        n_epochs=EPOCHS
+        n_epochs=EPOCHS,
     )
 
     start_time = time.time()

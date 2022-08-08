@@ -177,6 +177,7 @@ def data_loader_worker(tasks_queue, output_queue, quit_workers_event):
             json_lines = json_file.readlines()
             json_data = "[" + ",".join(json_lines) + "]"
             json_data = json.loads(json_data)
+
         for i in range(len(json_data)):
             if quit_workers_event.is_set():
                 break
