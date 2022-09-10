@@ -16,5 +16,5 @@ if settings.get('debug', False):
     # if debug flag is set to true, evaluation will only run a single episode for 100 steps.
     # Again, this will be enforced by the evaluation server, and do not do more episodes/steps
     # than this
-    EVAL_EPISODES = 1
+    EVAL_EPISODES = 2
     EVAL_MAX_STEPS = 100
